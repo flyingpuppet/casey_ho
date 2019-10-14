@@ -1,0 +1,22 @@
+MK = gmake
+CC = hcac
+ASM = hcac
+LD = ldac
+AR = arac
+OBJCOPY = elf2hex 
+DUMPELF = elfdump 
+STRIP = striparc
+CP = copy /Y
+RM = rm -f
+MKDIR = mkdir
+
+CC_FLAGS =-arc600 -Os -Hecpp -Hnocplus -Hnoxcheck -Hnosdata -Hnocopyr -HL $(CC_FLAGS_ADD) -w3 -Xtimer0 -Xtimer1 -Xcrc -Xea -Xnorm -Xswap -Xmin_max -Xbarrel_shifter -Xmul32x16 -Xxmac_d16 -Xxy -I./include -I../include -c
+ASM_FLAGS =-arc600 -Hecpp -Hnocplus -Hnoxcheck -Hnosdata -Hnocopyr -HL $(ASM_FLAGS_ADD) -w3 -Xtimer0 -Xtimer1 -Xcrc -Xea -Xnorm -Xswap -Xmin_max -Xbarrel_shifter -Xmul32x16 -Xxmac_d16 -Xxy -I./include -I../include -c
+LD_FLAGS =  -L $(ARC_TOOLCHAIN_PATH)/../lib/a6/le $(LD_FLAGS_ADD) -l ct -l mw -q
+DUMP_FLAGS = -z -q
+COPY_FLAGS = -B -Q
+STRIP_FALGS = -c -s -l -q
+
+RELEASE_DATE = $(shell date /T)
+RELEASE_TIME = $(shell time /T)
+RELEASE_USER = $(USERNAME)

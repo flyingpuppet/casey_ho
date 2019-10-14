@@ -1,0 +1,251 @@
+diff --git a/boot/update_main.c b/boot/update_main.c
+index 28c97b0..ceefd1c 100755
+--- a/boot/update_main.c
++++ b/boot/update_main.c
+@@ -7,11 +7,19 @@
+ #include <reboot.h>
+ #include <timer.h>
+ #include <uart_api.h>
++#include <panel.h>
++#include <osd.h>
++#include <fonts_update.h>
++
+ 
+ #define DEVICE_UART_PORT_0       0
+ #define DEVICE_UART_PORT_1       1
+ #define DEVICE_UART_PORT_2       2
+ 
++extern void init_vpp(void);
++extern void panel_init(void);
++
++
+ #if 0
+ void fn(void)
+ {
+@@ -29,6 +37,39 @@ void fn(void)
+ }
+ #endif
+ 
++void init_osd(void)
++{
++	int i;
++	//hide_logo();
++	OSD_Enable(0);
++	if(OUTPUT_LVDS == panel_param->output_mode) {
++		OSD_Initial(1920,1080,60,60,1859,1019);
++		//OSD_SetFontScale(1, 1);
++	} else if(OUTPUT_VB1 == panel_param->output_mode) {
++		OSD_Initial(3840,2160,120,120,3719,2039);
++		//OSD_SetFontScale(2, 2);
++	}
++	OSD_Set3DMode(OSD_3D_MODE_NORMAL);
++	//OSD_SetFontScale(1, 1);
++	//OSD_SetMirror(1);
++	OSD_SetSpacing(2,2,2,2);
++	if(OSD_GetMirror()==1) {
++		OSD_ConfigFonts(FONT_NUM, FONT_WIDTH, FONT_HEIGHT, sosd_font_lib_lut_hvflip, font_mapping, 1);
++	} else if(OSD_GetMirror()==0) {
++		OSD_ConfigFonts(FONT_NUM, FONT_WIDTH, FONT_HEIGHT, sosd_font_lib_lut, font_mapping, 1);
++	}
++	for (i=0; i<FONT_NUM; i++)
++		OSD_SetFontCut(i, sosd_cut_table[i]);
++	for (i=0; i<16; i++)
++		OSD_SetColor(i, nRGBA[i][0], nRGBA[i][1], nRGBA[i][2], nRGBA[i][3]);
++	OSD_SetBackground(1, FONT_BG_COLOR_INDEX);
++	//osd_init = 1;
++	//OSD_CleanScreen(update_menu, 78);
++	OSD_InitialRegionSimple(1, 1, "test update", FONT_NORMAL_COLOR_INDEX, FONT_BG_COLOR_INDEX);
++	OSD_Enable(1);
++}
++
++
+ int main(int argc, char *argv[])
+ {
+ 	update_ctrl_t update_ctrl;
+@@ -37,6 +78,20 @@ int main(int argc, char *argv[])
+ 	
+ 	serial_puts("init spi flash!\n");
+ 	init_spi_flash();
++
++	printf("Power on.\n");
++	power_on_aml();
++	printf("Init Panel.\n");
++	panel_init();
++	printf("Init Vpp.\n");
++	init_vpp();
++
++	printf("Panel power on.\n");
++	panel_power_on_aml();
++	mdelay(100);
++	init_osd();
++	printf("Backlight power on.\n");
++	backlight_power_on_aml();
+ 	
+ 	init_update_ctrl_t(&update_ctrl);
+ 
+diff --git a/driver/vpp/srcif.c b/driver/vpp/srcif.c
+index 0c7c251..8043bee 100755
+--- a/driver/vpp/srcif.c
++++ b/driver/vpp/srcif.c
+@@ -96,6 +96,27 @@ void srcif_fsm_off()
+ 	Wr(SRCIF_WRAP_CTRL ,    (data32 & 0x7fdfffff));
+ }
+ 
++void srcif_pure_sw_ptn()
++{
++	int data32 = 0;
++	Wr(SRCIF_WRAP_CTRL ,    0x00000020);
++	//step 1, rst fifo, vmux, gate vpu, force fifo_en, vmux_en, vmux_sel
++	Wr(SRCIF_WRAP_CTRL ,    0x0802aaa0);
++	delay_us(1);
++	//step 2, clock mux to ptn
++	Wr(SRCIF_WRAP_CTRL ,    0x0812aaa0);
++	delay_us(1);
++	//step 3, Need a wait pll lock here
++	//step 4, release rst of vmux, en vpu_clk_en
++	Wr(SRCIF_WRAP_CTRL ,    0x0c12aba0);
++	delay_us(1);
++	//step 5, enable ptn_en, vmux_en
++	Wr(SRCIF_WRAP_CTRL ,    0x0c12bbe0);
++	Wr(VP_CTRL ,    Rd(VP_CTRL) | 0x2);
++	delay_us(1);
++}
++
++
+ #ifdef IN_FBC_MAIN_CONFIG
+ void srcif_fsm_fc_ptn()
+ {
+@@ -117,26 +138,6 @@ void srcif_fsm_clk_freerun()
+ 	Wr(SRCIF_WRAP_CTRL,    (Rd(SRCIF_WRAP_CTRL) | 0x40000));
+ }
+ 
+-void srcif_pure_sw_ptn()
+-{
+-	int data32 = 0;
+-	Wr(SRCIF_WRAP_CTRL ,    0x00000020);
+-	//step 1, rst fifo, vmux, gate vpu, force fifo_en, vmux_en, vmux_sel
+-	Wr(SRCIF_WRAP_CTRL ,    0x0802aaa0);
+-	delay_us(1);
+-	//step 2, clock mux to ptn
+-	Wr(SRCIF_WRAP_CTRL ,    0x0812aaa0);
+-	delay_us(1);
+-	//step 3, Need a wait pll lock here
+-	//step 4, release rst of vmux, en vpu_clk_en
+-	Wr(SRCIF_WRAP_CTRL ,    0x0c12aba0);
+-	delay_us(1);
+-	//step 5, enable ptn_en, vmux_en
+-	Wr(SRCIF_WRAP_CTRL ,    0x0c12bbe0);
+-	Wr(VP_CTRL ,    Rd(VP_CTRL) | 0x2);
+-	delay_us(1);
+-}
+-
+ void srcif_pure_sw_hdmi()
+ {
+ 	int data32 = 0;
+diff --git a/driver/vpp/vpp.c b/driver/vpp/vpp.c
+index 2a63233..5d28157 100755
+--- a/driver/vpp/vpp.c
++++ b/driver/vpp/vpp.c
+@@ -64,12 +64,26 @@ vpu_timing_table_t timing_table[TIMING_MAX]= {
+     {TIMING_4kxd5kP240_3D_SG,0,0,0,0},
+ };
+ 
++vpu_srcif_mode_t srcif_mode = SRCIF_PURE_SOFTWARE;
++//to check the ic whether it is revA or revB: revA = 0, revB = 1
++int get_metal_revision(void)
++{
++	int revision_id = 0;
++
++	revision_id = Rd(METAL_REVISION);
++
++	if(revision_id == 0)
++		return 0;
++	else
++		return 1;
++}
++
++
+ #ifdef IN_FBC_MAIN_CONFIG
+ int panel_id = 0;
+ vpu_source_t source_cur = SOURCE_HDMI;
+ vpu_gammamod_t gammamod_cur = GAMMA_AFTER;
+ unsigned int auto_backlight_en = 1;//for nature light on/off
+-vpu_srcif_mode_t srcif_mode = SRCIF_PURE_SOFTWARE;
+ vpu_colortemp_t colortemp_cur = COLOR_TEMP_STD;
+ vpu_picmod_t picmod_cur = PICMOD_STD;
+ vpu_gammalever_t gammalever_cur = GAMMA_LEVER1;
+@@ -417,18 +431,7 @@ void vpp_process_wb_setting(vpu_message_t message)
+         break;
+     }
+ }
+-//to check the ic whether it is revA or revB: revA = 0, revB = 1
+-int get_metal_revision(void)
+-{
+-	int revision_id = 0;
+ 
+-	revision_id = Rd(METAL_REVISION);
+-
+-	if(revision_id == 0)
+-		return 0;
+-	else
+-		return 1;
+-}
+ ////to check the ic whether it is T101 or T102: T101 = 1, T102 = 2
+ int get_ic_version(void)
+ {
+diff --git a/driver/vpp/vpu_util.c b/driver/vpp/vpu_util.c
+index 493b648..f435f46 100755
+--- a/driver/vpp/vpu_util.c
++++ b/driver/vpp/vpu_util.c
+@@ -560,13 +560,15 @@ void enable_wb(int enable)
+     Wr_reg_bits(VP_CTRL,        enable&0x1,      4,1);    //enable
+     Wr_reg_bits(VP_BYPASS_CTRL,(enable>>1)&0x1,  2,1);    //bypass
+ }
+-#ifdef IN_FBC_MAIN_CONFIG
++
+ //===== sub-unit: Gamma
+ void enable_gamma(int enable)
+ {
+     Wr_reg_bits(VP_CTRL,        enable&0x1,      3,1);    //enable
+     Wr_reg_bits(VP_BYPASS_CTRL,(enable>>1)&0x1,  1,1);    //bypass
+ }
++#ifdef IN_FBC_MAIN_CONFIG
++
+ void config_gamma_mod(vpu_gammamod_t mode)
+ {
+     Wr_reg_bits(VP_CTRL,        mode& 0x1,      16,1);    //gamma mode
+@@ -1984,6 +1986,13 @@ void vpu_testpat_def(void)
+     Wr(VP_CIR15_Y12,0x21c0384);
+     Wr(VP_TRI_CTRL,0xe370000);
+ }
++extern vpu_srcif_mode_t srcif_mode;
++
++vpu_srcif_mode_t vpu_get_srcif_mode(void)
++{
++    return srcif_mode;
++}
++
+ #ifdef IN_FBC_MAIN_CONFIG
+ extern int panel_id;
+ void vpu_set_projectID(unsigned int pid)
+@@ -2029,7 +2038,7 @@ void vpu_timing_change_process(void)
+     enable_demura(2);
+ }
+ 
+-extern vpu_srcif_mode_t srcif_mode;
++
+ extern void SRCIF_FSM_STATE_Handle(void *arg);
+ void vpu_srcif_debug(unsigned int mode,unsigned int mux)
+ {
+@@ -2068,11 +2077,6 @@ void vpu_srcif_debug(unsigned int mode,unsigned int mux)
+     }
+ }
+ 
+-vpu_srcif_mode_t vpu_get_srcif_mode(void)
+-{
+-    return srcif_mode;
+-}
+-
+ #if 1 //for tcl interface
+ fbc_hist_t out_hist;
+ fbc_hist_t* fbc_hist_info(void)

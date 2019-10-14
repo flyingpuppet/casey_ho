@@ -1,0 +1,27 @@
+MK      = make
+CC      = arc-elf32-gcc 
+ASM     = arc-elf32-as 
+LD      = arc-elf32-ld 
+AR      = arc-elf32-ar
+OBJCOPY = elf2hex 
+DUMPELF = arc-elf32-objdump 
+STRIP   = arc-elf32-strip
+CP      = cp -rf
+RM      = rm -rf
+MKDIR   = mkdir -p
+
+CC_FLAGS   = -mA6 -gdwarf-2 -O0 -mlong-calls \
+             -ffunction-sections -Wall \
+             -mEA -mnorm -mmin_max -mswap -mbarrel_shifter -mno-sdata -mno-volatile-cache \
+             -Wa,-mmac_d16 -Wa,-mdsp_packa \
+             -DAUDIO_ARC -DARC6 \
+             -I. -I.. -c $(CC_FLAGS_ADD)
+ASM_FLAGS  = -mA6 $(ASM_FLAGS_ADD) -I. -I..  
+#ARC_PATH = /export/tools/gnutools/arc2.3-p2/elf32-4.2.1
+LD_FLAGS   = -L ../../../../ucode -L .-lgccTmp -L $(ARC_TOOLCHAIN_PATH)/../lib/gcc/arc-elf32/4.2.1/ -L $(ARC_TOOLCHAIN_PATH)/../arc-elf32/lib -lc -lgcc -lm -e 0x40000000 --entry 0x40000000 --section-start .text=0x40000000 -Map code.map 
+DUMP_FLAGS = -D 
+COPY_OUT_FLAG = -o 
+
+RELEASE_DATE = `date +%Y/%m/%d`
+RELEASE_TIME = `date +%H:%M:%S`
+RELEASE_USER = $(USER)

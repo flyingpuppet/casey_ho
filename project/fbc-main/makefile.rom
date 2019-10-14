@@ -1,0 +1,99 @@
+CODESIZE = $(shell echo `stat -c %s rom_code_orig.bin`)
+RSCODESIZE = $(shell echo `stat -c %s rs_code_orig.bin`)
+DATASIZE = $(shell echo `stat -c %s rom_data_orig.bin`)
+RODATASIZE = $(shell echo `stat -c %s rom_rodata_orig.bin`)
+AUDIOPARAMSIZE = $(shell echo `stat -c %s project/rom_audioparam`)
+PQPARAMSIZE = $(shell echo `stat -c %s project/rom_pqparam`)
+SYSPARAMSIZE = $(shell echo `stat -c %s project/rom_sysparam`)
+
+CODEPADSIZE = 131072
+RSCODEPADSIZE = 65536
+DATAPADSIZE = 65536
+RODATAPADSIZE = 184320
+AUDIOPARAMPADSIZE = 8192
+PQPARAMPADSIZE = 45056
+SYSPARAMPADSIZE = 24576
+CHECKFIELDSIZE = 32
+
+CODEPADDING = $(shell echo ${CODEPADSIZE}-${CODESIZE} | bc)
+MAXCODESIZE = $(shell echo ${CODEPADSIZE}-${CHECKFIELDSIZE} | bc)
+RSCODEPADDING = $(shell echo ${RSCODEPADSIZE}-${RSCODESIZE} | bc)
+MAXRSCODESIZE = $(shell echo ${RSCODEPADSIZE}-${CHECKFIELDSIZE} | bc)
+DATAPADDING = $(shell echo ${DATAPADSIZE}-${DATASIZE} | bc)
+RODATAPADDING = $(shell echo ${RODATAPADSIZE}-${RODATASIZE} | bc)
+MAXRODATASIZE = $(shell echo ${RODATAPADSIZE}-${CHECKFIELDSIZE} | bc)
+AUDIOPARAMPADDING = $(shell echo ${AUDIOPARAMPADSIZE}-${AUDIOPARAMSIZE} | bc)
+PQPARAMPADDING = $(shell echo ${PQPARAMPADSIZE}-${PQPARAMSIZE} | bc)
+SYSPARAMPADDING = $(shell echo ${SYSPARAMPADSIZE}-${SYSPARAMSIZE} | bc)
+
+compare = $(shell if [ $(1) -gt $(2) ] ; then echo gt ; else echo le ; fi)
+
+all : rom.hex
+
+clean:
+	@$(RM) rom_map.c
+	@$(RM) rom.bin
+	@$(RM) rom.hex
+
+rom.hex: $(OBJS) $(LIB_OBJS) 
+	@echo "main code size = $(CODESIZE)"
+	@echo "main spi code size = $(RSCODESIZE)"
+	@echo "main data size = $(DATASIZE)"
+	@echo "main rodata size = $(RODATASIZE)"
+ifeq ("$(call compare,$(CODESIZE),$(MAXCODESIZE))", "gt")
+	@echo "Error! code size > $(MAXCODESIZE)!"
+	exit 1
+endif
+	head -c $(CODEPADDING) /dev/zero >> rom_code_orig.bin
+	./tool/bin_wrapper -i ./rom_code_orig.bin -t main_code_bin -o ./rom_code.bin
+
+ifeq ("$(call compare,$(RSCODESIZE),$(MAXRSCODESIZE))", "gt")
+	@echo "Error! code size > $(MAXRSCODESIZE)!"
+	exit 1
+endif
+	head -c $(RSCODEPADDING) /dev/zero >> rs_code_orig.bin
+	./tool/bin_wrapper -i ./rs_code_orig.bin -t main_rscode_bin -o ./rs_code.bin
+	
+ifeq ("$(call compare,$(DATASIZE),$(DATAPADSIZE))", "gt")
+	@echo "Error! data size > $(DATAPADSIZE)!"
+	exit 1
+endif
+	head -c $(DATAPADDING) /dev/zero >> rom_data_orig.bin
+	./tool/bin_wrapper -i ./rom_data_orig.bin -t main_data_bin -o ./rom_data.bin
+
+ifeq ("$(call compare,$(RODATASIZE),$(MAXRODATASIZE))", "gt")
+	@echo "Error! rodata size > $(MAXRODATASIZE)!"
+	exit 1
+endif
+	head -c $(RODATAPADDING) /dev/zero >> rom_rodata_orig.bin
+	./tool/bin_wrapper -i ./rom_rodata_orig.bin -t main_rodata_bin -o ./rom_rodata.bin
+	cat rom_code_orig.bin rom_data_orig.bin rom_rodata_orig.bin >> rom_orig.bin
+	
+	./tool/audio_param
+	cat rom_audioparam > project/rom_audioparam
+	cat project/rom_audioparam > rom_audioparam.bin
+	head -c $(AUDIOPARAMPADDING) /dev/zero >> rom_audioparam.bin
+	rm rom_audioparam
+ifeq ("$(call compare,$(AUDIOPARAMSIZE),$(AUDIOPARAMPADSIZE))", "gt")
+	@echo "Error! audio param size > $(AUDIOPARAMPADSIZE)!"
+	exit 1
+endif
+	cat project/rom_pqparam > rom_pqparam.bin
+	head -c $(PQPARAMPADDING) /dev/zero >> rom_pqparam.bin
+ifeq ("$(call compare,$(PQPARAMSIZE),$(PQPARAMPADSIZE))", "gt")
+	@echo "Error! pq param size > $(PQPARAMSIZE)!"
+	exit 1
+endif
+	cat project/rom_sysparam > rom_sysparam.bin
+	head -c $(SYSPARAMPADDING) /dev/zero >> rom_sysparam.bin
+ifeq ("$(call compare,$(SYSPARAMSIZE),$(SYSPARAMPADSIZE))", "gt")
+	@echo "Error! sys param size > $(SYSPARAMPADSIZE)!"
+	exit 1
+endif
+	cat rom_audioparam.bin rom_pqparam.bin rom_sysparam.bin >> rom_param_orig.bin
+	./tool/bin_wrapper -i ./rom_param_orig.bin -t main_param_bin -o ./rom_param.bin
+	cat rom_param_orig.bin >> rom_orig.bin
+	cat rom_code.bin rom_data.bin rs_code.bin rom_rodata.bin rom_param.bin > rom.bin
+	bin2hex rom_orig.bin 1 > rom_orig.hex
+	bin2hex rom.bin 1 > rom.hex
+	echo "unsigned __SECTION_SIZE[3] = {$(CODESIZE), $(DATASIZE), $(RODATASIZE)};" > rom_map.c

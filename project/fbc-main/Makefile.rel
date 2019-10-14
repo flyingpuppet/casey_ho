@@ -1,0 +1,118 @@
+ifeq ($(ARC_COMPILER), GNU)
+  include makefile_gnu_main
+else
+  ifeq ($(ARC_COMPILER), METAWARE)
+    include makefile_metaware_main
+  endif
+endif
+
+PRODUCT = "fbc-boot"
+VERSION = v1.0
+VERSION_FILE = version_autogenarated.h
+
+LD_LIB_PATH=$(ARC_TOOLCHAIN_PATH)/../lib/a6
+CC_FLAGS+= -I./include/vpp/
+CC_FLAGS+= -I./project/include/
+ASM_FLAGS+= -I./include/vpp/
+ASM_FLAGS+= -I./project/include/
+
+CC_FLAGS += -DIN_FBC_MAIN_CONFIG
+ASM_FLAGS += -DIN_FBC_MAIN_CONFIG
+
+SSRCS	= driver/vtable.s
+
+MAIN    = main.c
+SRCS	= common/printf.c
+SRCS	+= common/console.c
+SRCS	+= common/command.c
+SRCS	+= common/cmd_test.c
+SRCS	+= common/cmd_suspend.c
+SRCS	+= common/cmd_debug.c
+SRCS	+= common/dbg_task.c
+SRCS	+= common/cmd_reboot.c
+SRCS	+= common/cmd_sf.c
+SRCS    += common/cmd_parameters.c
+SRCS	+= common/test_running_spi.c
+SRCS	+= common/build_version.c
+PRJ_SRCS    += project/user_setting.c
+PRJ_SRCS	+= project/panel.c
+PRJ_SRCS	+= project/ui.c
+PRJ_SRCS    += project/customer_key_conf.c
+
+
+OBJS     = $(SSRCS:%.s=%.o$(SUFFIX)) $(MAIN:%.c=%.o$(SUFFIX)) $(SRCS:%.c=%.o$(SUFFIX)) $(PRJ_SRCS:%.c=%.o$(SUFFIX))
+
+export CC_FLAGS_ADD
+export LD_FLAGS_ADD
+
+main_mem_code_size = $(shell cat mm_size)
+main_spi_code_size = $(shell cat ms_size)
+
+all : main.elf
+
+add_flags:
+	$(eval CC_FLAGS_ADD = -Ml)
+	$(eval ASM_FLAGS_ADD = -Ml)
+
+sections_info.asm : main.elf
+	$(DUMPELF) -s -q main.elf > sections_info.asm
+	
+mem_code_size : sections_info.asm
+	./get_section_size.sh sections_info.asm mm_size 10 .start .text .fini .init .plt
+	
+spi_code_size : sections_info.asm
+	./get_section_size.sh sections_info.asm ms_size 1074069504 .running.on.spi .spi.text
+	
+main.elf: version.info add_flags $(OBJS)
+	$(LD) $(OBJS) fbc.a $(LD_LIB_PATH)/le/crt1.o $(LD_LIB_PATH)/le/crti.o $(LD_FLAGS) main.cmd -lhlt -e _start -o $@
+	$(DUMPELF) $(DUMP_FLAGS) $@ > main.asm
+
+rom: clean main.elf mem_code_size spi_code_size
+	$(CP) main.elf rom.elf
+	$(STRIP) $(STRIP_FALGS) rom.elf
+	$(DUMPELF) $(DUMP_FLAGS) rom.elf > rom.asm	
+	$(ELF2BIN) rom.elf rom_code_orig.bin -b0x0 -t$(main_mem_code_size)
+	$(ELF2BIN) rom.elf rs_code_orig.bin -b0x40050000 -t$(main_spi_code_size)
+	$(OBJCOPY) $(COPY_FLAGS) rom.elf -o rom_rodata_orig.bin -cl
+	$(OBJCOPY) $(COPY_FLAGS) rom.elf -o rom_data_orig.bin -cd
+	$(MK) -C tool all
+	$(MK) -f makefile.rom
+
+spi: rom
+	$(MK) -C boot rom
+	cat boot/rom_boot.bin rom.bin >> spi.bin
+	bin2hex spi.bin 1 > spi.hex
+
+version.info:
+	@$(RM) include/$(VERSION_FILE)
+	@echo "#define PRODUCT_NAME \"$(PRODUCT)\"" > include/$(VERSION_FILE)
+	@echo "#define VERSION \"$(VERSION)\"" >> include/$(VERSION_FILE)
+	@echo "#define RELEASE_DATE \"$(RELEASE_DATE)\"" >> include/$(VERSION_FILE)
+	@echo "#define RELEASE_TIME \"$(RELEASE_TIME)\"" >> include/$(VERSION_FILE)
+	@echo "#define RELEASE_USER \"$(RELEASE_USER)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_BOOT_VERSION \"$(PRODUCT) $(VERSION) (RELEASE:$(RELEASE_USER) COMPILER:$(ARC_COMPILER)) $(RELEASE_DATE) $(RELEASE_TIME)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_GIT_BRANCH \"$(FBC_GIT_BRANCH)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_GIT_COMMIT \"$(FBC_GIT_COMMIT)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_GIT_UNCOMMIT_FILE_NUM \"$(FBC_GIT_UNCOMMIT_FILE_NUM)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_GIT_LAST_CHANGED \"$(FBC_GIT_LAST_CHANGED)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_BUILD_TIME \"$(FBC_BUILD_TIME)\"" >> include/$(VERSION_FILE)
+	@echo "#define FBC_BUILD_NAME \"$(FBC_BUILD_NAME)\"" >> include/$(VERSION_FILE)
+
+clean:
+	@$(RM) include/$(VERSION_FILE)
+	@$(RM) $(OBJS)
+	@$(RM) *.elf
+	@$(RM) *.bin
+	@$(RM) *.hex
+	@$(RM) *.asm
+	@$(RM) rom_map.*
+	@$(RM) mm_size
+	@$(RM) ms_size
+	$(MK) -C boot clean
+	$(MK) -C tool clean
+
+.c.o:
+	$(CC) $(CC_FLAGS) $< -o $@
+
+.s.o:
+	$(ASM) $(ASM_FLAGS) $< -o $@

@@ -1,0 +1,30 @@
+MK = make
+CC = hcac
+ASM = hcac
+LD = ldac
+AR = arac
+OBJCOPY = elf2hex 
+DUMPELF = elfdump 
+ELF2BIN = elf2bin
+STRIP = striparc
+CP = cp -rf
+RM = rm -rf
+MKDIR = mkdir -p
+
+CC_FLAGS =-arc600 -core6 -Os -HL -Hnosdata -Hnocrt -Hnolib -Hnocopyr $(CC_FLAGS_ADD) -w3 -Xtimer0 -Xtimer1 -Xcrc -Xea -Xnorm -Xswap -Xmin_max -Xbarrel_shifter -Xmul32x16 -Xxmac_d16 -Xxy -I./include -I../include -c
+ASM_FLAGS =-arc600 -core6 -HL -Hnosdata -Hnocrt -Hnolib -Hnocopyr $(ASM_FLAGS_ADD) -w3 -Xtimer0 -Xtimer1 -Xcrc -Xea -Xnorm -Xswap -Xmin_max -Xbarrel_shifter -Xmul32x16 -Xxmac_d16 -Xxy -I./include -I../include -c
+LD_FLAGS =  -L $(ARC_TOOLCHAIN_PATH)/../lib/a6/le $(LD_FLAGS_ADD) -l ct -l mw -q
+DUMP_FLAGS = -z -q
+COPY_FLAGS = -B -Q
+STRIP_FALGS = -c -s -l -q
+
+RELEASE_DATE = `date +%Y/%m/%d`
+RELEASE_TIME = `date +%H:%M:%S`
+RELEASE_USER = $(USER)
+
+FBC_GIT_BRANCH = `git branch | grep \* -m 1`
+FBC_GIT_COMMIT = `git log | grep commit -m 1 | cut -d' ' -f 2`
+FBC_GIT_UNCOMMIT_FILE_NUM = `git diff | grep +++ -c`
+FBC_GIT_LAST_CHANGED = `git log | grep Date -m 1`
+FBC_BUILD_TIME = `date`
+FBC_BUILD_NAME = `echo ${LOGNAME}`

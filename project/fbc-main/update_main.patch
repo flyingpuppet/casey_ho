@@ -1,0 +1,85 @@
+diff --git a/boot/update_main.c b/boot/update_main.c
+index 28c97b0..ceefd1c 100755
+--- a/boot/update_main.c
++++ b/boot/update_main.c
+@@ -7,11 +7,19 @@
+ #include <reboot.h>
+ #include <timer.h>
+ #include <uart_api.h>
++#include <panel.h>
++#include <osd.h>
++#include <fonts_update.h>
++
+ 
+ #define DEVICE_UART_PORT_0       0
+ #define DEVICE_UART_PORT_1       1
+ #define DEVICE_UART_PORT_2       2
+ 
++extern void init_vpp(void);
++extern void panel_init(void);
++
++
+ #if 0
+ void fn(void)
+ {
+@@ -29,6 +37,39 @@ void fn(void)
+ }
+ #endif
+ 
++void init_osd(void)
++{
++	int i;
++	//hide_logo();
++	OSD_Enable(0);
++	if(OUTPUT_LVDS == panel_param->output_mode) {
++		OSD_Initial(1920,1080,60,60,1859,1019);
++		//OSD_SetFontScale(1, 1);
++	} else if(OUTPUT_VB1 == panel_param->output_mode) {
++		OSD_Initial(3840,2160,120,120,3719,2039);
++		//OSD_SetFontScale(2, 2);
++	}
++	OSD_Set3DMode(OSD_3D_MODE_NORMAL);
++	//OSD_SetFontScale(1, 1);
++	//OSD_SetMirror(1);
++	OSD_SetSpacing(2,2,2,2);
++	if(OSD_GetMirror()==1) {
++		OSD_ConfigFonts(FONT_NUM, FONT_WIDTH, FONT_HEIGHT, sosd_font_lib_lut_hvflip, font_mapping, 1);
++	} else if(OSD_GetMirror()==0) {
++		OSD_ConfigFonts(FONT_NUM, FONT_WIDTH, FONT_HEIGHT, sosd_font_lib_lut, font_mapping, 1);
++	}
++	for (i=0; i<FONT_NUM; i++)
++		OSD_SetFontCut(i, sosd_cut_table[i]);
++	for (i=0; i<16; i++)
++		OSD_SetColor(i, nRGBA[i][0], nRGBA[i][1], nRGBA[i][2], nRGBA[i][3]);
++	OSD_SetBackground(1, FONT_BG_COLOR_INDEX);
++	//osd_init = 1;
++	//OSD_CleanScreen(update_menu, 78);
++	OSD_InitialRegionSimple(1, 1, "test update", FONT_NORMAL_COLOR_INDEX, FONT_BG_COLOR_INDEX);
++	OSD_Enable(1);
++}
++
++
+ int main(int argc, char *argv[])
+ {
+ 	update_ctrl_t update_ctrl;
+@@ -37,6 +78,20 @@ int main(int argc, char *argv[])
+ 	
+ 	serial_puts("init spi flash!\n");
+ 	init_spi_flash();
++
++	printf("Power on.\n");
++	power_on_aml();
++	printf("Init Panel.\n");
++	panel_init();
++	printf("Init Vpp.\n");
++	init_vpp();
++
++	printf("Panel power on.\n");
++	panel_power_on_aml();
++	mdelay(100);
++	init_osd();
++	printf("Backlight power on.\n");
++	backlight_power_on_aml();
+ 	
+ 	init_update_ctrl_t(&update_ctrl);
+ 

@@ -1,0 +1,86 @@
+BOOTCODESIZE = $(shell echo `stat -c %s rom_boot_code.bin`)
+BOOTDATASIZE = $(shell echo `stat -c %s rom_boot_data.bin`)
+SUSPENDCODESIZE = $(shell echo `stat -c %s rom_suspend_code.bin`)
+SUSPENDDATASIZE = $(shell echo `stat -c %s rom_suspend_data.bin`)
+UPDATECODESIZE = $(shell echo `stat -c %s rom_update_code.bin`)
+UPDATEDATASIZE = $(shell echo `stat -c %s rom_update_data.bin`)
+CODEPADSIZE = 16384
+DATAPADSIZE = 8192
+
+BOOTCODEPADSIZE = 20480
+BOOTDATAPADSIZE = 4096
+SUSPENDCODEPADSIZE = 6144
+SUSPENDDATAPADSIZE = 2048
+UPDATECODEPADSIZE = 73728
+UPDATEDATAPADSIZE = 24576
+
+BOOTCODEPADDING = $(shell echo ${BOOTCODEPADSIZE}-${BOOTCODESIZE} | bc)
+BOOTDATAPADDING = $(shell echo ${BOOTDATAPADSIZE}-${BOOTDATASIZE} | bc)
+SUSPENDCODEPADDING = $(shell echo ${SUSPENDCODEPADSIZE}-${SUSPENDCODESIZE} | bc)
+SUSPENDDATAPADDING = $(shell echo ${SUSPENDDATAPADSIZE}-${SUSPENDDATASIZE} | bc)
+UPDATECODEPADDING = $(shell echo ${UPDATECODEPADSIZE}-${UPDATECODESIZE} | bc)
+UPDATEDATAPADDING = $(shell echo ${UPDATEDATAPADSIZE}-${UPDATEDATASIZE} | bc)
+
+compare = $(shell if [ $(1) -gt $(2) ] ; then echo gt ; else echo le ; fi)
+
+all : rom_boot.hex rom_suspend.hex rom_update.hex
+	cat rom_suspend.bin >> rom_boot.bin
+	cat rom_update.bin >> rom_boot.bin
+	mv rom_boot.bin rom_boot_orig.bin
+	./../tool/bin_wrapper -i ./rom_boot_orig.bin -t boot_bin -o ./rom_boot.bin
+	bin2hex rom_boot_orig.bin 1 > rom_boot_orig.hex
+	bin2hex rom_boot.bin 1 > rom_boot.hex
+
+clean:
+	@rm -f rom_boot.bin
+	@rm -f rom_boot*.hex
+	@rm -f rom_update*.bin
+	@rm -f rom_update.hex
+
+rom_boot.hex: $(OBJS) $(LIB_OBJS)
+	@echo "boot code size = $(BOOTCODESIZE)"
+	@echo "boot data size = $(BOOTDATASIZE)"
+ifeq ("$(call compare,$(BOOTCODESIZE),$(BOOTCODEPADSIZE))", "gt")
+	@echo "Error! code size > $(BOOTCODEPADSIZE)!"
+	exit 1
+endif
+	head -c $(BOOTCODEPADDING) /dev/zero >> rom_boot_code.bin
+ifeq ("$(call compare,$(BOOTDATASIZE),$(BOOTDATAPADSIZE))", "gt")
+	@echo "Error! data size > $(BOOTDATAPADSIZE)!"
+	exit 1
+endif
+	head -c $(BOOTDATAPADDING) /dev/zero >> rom_boot_data.bin
+	cat rom_boot_code.bin rom_boot_data.bin >> rom_boot.bin
+	bin2hex rom_boot.bin 1 > rom_boot_orign.hex
+
+rom_suspend.hex: $(SUS_OBJS) $(SUS_LIB_OBJS)
+	@echo "suspend code size = $(SUSPENDCODESIZE)"
+	@echo "suspend data size = $(SUSPENDDATASIZE)"
+ifeq ("$(call compare,$(SUSPENDCODESIZE),$(SUSPENDCODEPADSIZE))", "gt")
+	@echo "Error! code size > $(SUSPENDCODEPADSIZE)!"
+	exit 1
+endif
+	head -c $(SUSPENDCODEPADDING) /dev/zero >> rom_suspend_code.bin
+ifeq ("$(call compare,$(SUSPENDDATASIZE),$(SUSPENDDATAPADSIZE))", "gt")
+	@echo "Error! data size > $(SUSPENDDATAPADSIZE)!"
+	exit 1
+endif
+	head -c $(SUSPENDDATAPADDING) /dev/zero >> rom_suspend_data.bin
+	cat rom_suspend_code.bin rom_suspend_data.bin >> rom_suspend.bin
+	bin2hex rom_suspend.bin 1 > rom_suspend_orign.hex
+	
+rom_update.hex: $(UOBJS) $(LIB_OBJS) 
+	@echo "update code size = $(UPDATECODESIZE)"
+	@echo "update data size = $(UPDATEDATASIZE)"
+ifeq ("$(call compare,$(UPDATECODESIZE),$(UPDATECODEPADSIZE))", "gt")
+	@echo "Error! update code size > $(UPDATECODESIZE)!"
+	exit 1
+endif
+	head -c $(UPDATECODEPADDING) /dev/zero >> rom_update_code.bin
+ifeq ("$(call compare,$(UPDATEDATASIZE),$(UPDATEDATAPADSIZE))", "gt")
+	@echo "Error! update data size > $(UPDATEDATAPADSIZE)!"
+	exit 1
+endif
+	head -c $(UPDATEDATAPADDING) /dev/zero >> rom_update_data.bin
+	cat rom_update_code.bin rom_update_data.bin >> rom_update.bin
+	bin2hex rom_update.bin 1 > rom_update.hex

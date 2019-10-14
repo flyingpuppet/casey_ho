@@ -1,0 +1,24 @@
+GCC = gcc
+
+OBJ_TOOLS = audio_param
+OBJ_TOOLS += bin_wrapper
+
+TOOLS_SRCS = audio_param.c
+TOOLS_SRCS += bin_wrapper.c
+
+audio_param: audio_param.o
+	$(GCC) $^ -o $@
+
+bin_wrapper: bin_wrapper.o
+	$(GCC) $^ -o $@
+
+	
+all: clean $(OBJ_TOOLS)
+	
+clean:
+	@$(RM) *.o
+	@$(RM) rom_audioparam
+	@$(RM) $(OBJ_TOOLS)
+	
+.c.o:
+	$(GCC) -c $<

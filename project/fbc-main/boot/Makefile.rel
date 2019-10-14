@@ -1,0 +1,84 @@
+ifeq ($(ARC_COMPILER), GNU)
+  include ../makefile_gnu
+else 
+  ifeq ($(ARC_COMPILER), METAWARE)
+    include ../makefile_metaware
+  endif
+endif
+
+LD_LIB_PATH=$(ARC_TOOLCHAIN_PATH)/../lib/a6
+CC_FLAGS+= -I./../include/vpp/
+CC_FLAGS+= -I./../project/include/
+ASM_FLAGS+= -I./../include/vpp/
+ASM_FLAGS+= -I./../project/include/
+
+SRCS     = boot.c
+ifeq ($(wildcard ../rom_map.c),)
+else
+SRCS     += ../rom_map.c
+CC_FLAGS_ADD += -DHAS_ROM_MAP
+endif
+SRCS += ../common/build_version.c
+SSRCS	 = boot_rom.s
+OBJS     = $(SSRCS:%.s=%.o$(SUFFIX)) $(SRCS:%.c=%.o$(SUFFIX))
+
+SUS_SSRCS	 = boot_rom.s
+SUS_SRCS     = suspend.c
+SUS_SRCS    += ../project/customer_key_conf.c
+SUS_OBJS     = $(SUS_SSRCS:%.s=%.o$(SUFFIX)) $(SUS_SRCS:%.c=%.o$(SUFFIX))
+
+USRCS = update_main.c
+USRCS += update.c
+USSRCS = ../driver/vtable.s
+UOBJS = $(USSRCS:%.s=%.o$(SUFFIX)) $(USRCS:%.c=%.o$(SUFFIX))
+
+export CC_FLAGS_ADD
+export ASM_FLAGS_ADD
+export LD_FLAGS_ADD
+
+all : rom_boot.elf
+
+rom_boot.elf: $(OBJS)
+	$(LD) $(OBJS) fbc_boot.a $(LD_FLAGS) boot.cmd -o boot.elf
+	$(DUMPELF) $(DUMP_FLAGS) boot.elf > boot.asm
+	cp boot.elf rom_boot.elf
+	$(STRIP) $(STRIP_FALGS) rom_boot.elf
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_boot_code.bin -ctl
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_boot_data.bin -cd
+	$(DUMPELF) $(DUMP_FLAGS) $@ > rom_boot.asm
+
+rom_suspend.elf: $(SUS_OBJS)
+	$(LD) $(SUS_OBJS) fbc_suspend.a $(LD_FLAGS) suspend.cmd -o suspend.elf
+	$(DUMPELF) $(DUMP_FLAGS) suspend.elf > suspend.asm
+	cp suspend.elf rom_suspend.elf
+	$(STRIP) $(STRIP_FALGS) rom_suspend.elf
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_suspend_code.bin -ctl
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_suspend_data.bin -cd
+	$(DUMPELF) $(DUMP_FLAGS) $@ > rom_suspend.asm
+
+rom_update.elf: $(UOBJS)
+	$(LD) $(UOBJS) fbc_update.a $(LD_LIB_PATH)/le/crt1.o $(LD_LIB_PATH)/le/crti.o $(LD_FLAGS) update.cmd -lhlt -e _start -o update.elf
+#	$(LD) $(UOBJS) rom_update.a $(LD_FLAGS) update.cmd -o update.elf
+	$(DUMPELF) $(DUMP_FLAGS) update.elf > rom_update.asm
+	cp update.elf rom_update.elf
+	$(STRIP) $(STRIP_FALGS) rom_update.elf
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_update_code.bin -ctl
+	$(OBJCOPY) $(COPY_FLAGS) $@ -o rom_update_data.bin -cd
+	$(DUMPELF) $(DUMP_FLAGS) $@ > rom_update.asm
+rom: clean rom_boot.elf rom_suspend.elf rom_update.elf
+	make -f makefile.rom
+
+clean:
+	@rm -f $(OBJS) $(UOBJS) $(SUS_OBJS)
+	@rm -f *.asm
+	@rm -f *.bin
+	@rm -f *.elf
+	@rm -f rom_boot*.hex
+	@rm -f rom_suspend*.hex
+	@rm -f rom_update*.hex
+
+.c.o:  
+	$(CC) $(CC_FLAGS) $< -o $@
+
+.s.o:  
+	$(ASM) $(ASM_FLAGS) $< -o $@

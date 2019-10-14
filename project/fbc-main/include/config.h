@@ -1,0 +1,2 @@
+#define	CONFIG_CONS_INDEX		1
+#define CONFIG_SERIAL_MULTI		1

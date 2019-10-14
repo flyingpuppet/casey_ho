@@ -1,0 +1,45 @@
+diff --git a/boot/boot.c b/boot/boot.c
+index 99a7b1f..ee4a9f1 100755
+--- a/boot/boot.c
++++ b/boot/boot.c
+@@ -156,8 +156,15 @@ static int abortboot(int bootdelay)
+ int main()
+ {
+     unsigned int boot_flag = 0; //0:normal boot, 1:do recovery, 2:do suspend
+-    clock_init();
+     copy_data_from_spi_to_sram2(BOOT_DATA_BASE, BOOT_DATA_SIZE>>2);
++	extern int b_flag;
++	b_flag = 1;
++	serial_init(0);
++	b_flag = 0;
++	current_serial_device = default_serial_console();
++	serial_puts("enter clock_init!\n");
++
++    clock_init();
+ 
+     serial_init(0);
+     current_serial_device = default_serial_console();
+diff --git a/driver/uart.c b/driver/uart.c
+index 6033068..927b59d 100755
+--- a/driver/uart.c
++++ b/driver/uart.c
+@@ -36,6 +36,8 @@ static void serial_putc_port (unsigned port_base,const char c);
+ /*
+  * Sets baudarate
+  */
++int b_flag = 0;
++
+ static void serial_setbrg_port (unsigned port_base)
+ {
+         
+@@ -44,7 +46,9 @@ static void serial_setbrg_port (unsigned port_base)
+     if(uart_clk < 0)
+         return;
+      
+-    
++    if(b_flag)
++		uart_clk = 24000000;
++	
+     /* baud rate */
+ 	baud_para=uart_clk/(UART_0_DEFAULT_BAUD_RATE*4) - 1;
+ 
