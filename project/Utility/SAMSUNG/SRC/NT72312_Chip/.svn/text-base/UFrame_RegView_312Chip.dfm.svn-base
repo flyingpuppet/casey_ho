@@ -1,0 +1,2 @@
+inherited Frame_RegView_312Chip: TFrame_RegView_312Chip
+end

@@ -1,0 +1,18 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+export PATH
+
+export HCICLOUD_HOME=${HOME}/cloud
+export LD_LIBRARY_PATH=./:$JAVA_HOME/jre/lib/amd64/server:${HCICLOUD_HOME}/bin:${HCICLOUD_HOME}/res/asr:/usr/local/lib:${HCICLOUD_HOME}/res/tts/Chinese/Professional:${LD_LIBRARY_PATH}
+export LD_PRELOAD="libimf.so"
+
+ulimit -c unlimited

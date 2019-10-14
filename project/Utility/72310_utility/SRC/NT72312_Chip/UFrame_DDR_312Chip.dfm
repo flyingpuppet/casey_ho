@@ -1,0 +1,2 @@
+inherited Frame_DDR_312Chip: TFrame_DDR_312Chip
+end

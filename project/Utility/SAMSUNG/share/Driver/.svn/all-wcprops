@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver
+END
+I2CDevice.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/I2CDevice.h
+END
+UDSUProtocol.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UDSUProtocol.cpp
+END
+usb_lib.lib
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/usb_lib.lib
+END
+USBPort.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/USBPort.h
+END
+UDSUProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UDSUProtocol.h
+END
+NVT_USB_CMD.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/NVT_USB_CMD.h
+END
+UDeviceCreate.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UDeviceCreate.cpp
+END
+winio.lib
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/winio.lib
+END
+I2C.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/I2C.cpp
+END
+UDeviceCreate.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UDeviceCreate.h
+END
+guid9x.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/guid9x.h
+END
+WinIo.dll
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/WinIo.dll
+END
+bcbport.lib
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/bcbport.lib
+END
+PORTIO.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/PORTIO.h
+END
+I2C.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/I2C.h
+END
+UI2CProtocol.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UI2CProtocol.cpp
+END
+UProtocol.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UProtocol.cpp
+END
+UI2CProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UI2CProtocol.h
+END
+UProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/UProtocol.h
+END
+ntport.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/ntport.h
+END
+I2CDevice.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/MEMC/!svn/ver/2689/utility/SHARE/Driver/I2CDevice.cpp
+END

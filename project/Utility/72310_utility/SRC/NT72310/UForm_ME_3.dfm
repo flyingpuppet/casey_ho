@@ -1,0 +1,602 @@
+inherited Form_ME_3: TForm_ME_3
+  Left = 192
+  Top = 142
+  Width = 698
+  Height = 516
+  Caption = 'Form_ME_3'
+  OldCreateOrder = True
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox4: TGroupBox
+    Left = 0
+    Top = 3
+    Width = 569
+    Height = 111
+    Caption = 'Limit process'
+    TabOrder = 0
+    object RegCheckBox20: TRegCheckBox
+      Left = 16
+      Top = 16
+      Width = 97
+      Height = 17
+      Caption = 'ip limit en'
+      TabOrder = 0
+      RegAddress = '0xE000092C'
+      RegBit = 7
+    end
+    object RegCheckBox21: TRegCheckBox
+      Left = 16
+      Top = 37
+      Width = 97
+      Height = 17
+      Caption = 'pi limit en'
+      TabOrder = 1
+      RegAddress = '0xE000092C'
+      RegBit = 6
+    end
+    object RegCheckBox22: TRegCheckBox
+      Left = 16
+      Top = 58
+      Width = 97
+      Height = 17
+      Caption = 'ph limit en'
+      TabOrder = 2
+      RegAddress = '0xE000092C'
+      RegBit = 5
+    end
+    object RegCheckBox23: TRegCheckBox
+      Left = 16
+      Top = 80
+      Width = 97
+      Height = 17
+      Caption = 'pf limit en'
+      TabOrder = 3
+      RegAddress = '0xE000092C'
+      RegBit = 4
+    end
+    object RegLabeledEdit29: TRegLabeledEdit
+      Left = 216
+      Top = 16
+      Width = 106
+      Height = 21
+      EditLabel.Width = 72
+      EditLabel.Height = 13
+      EditLabel.Caption = 'pf sad similar th'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 4
+      RegStartAddress = '0xE000092D'
+      RegBits = 13
+      TextType = ttInt
+    end
+    object RegLabeledEdit30: TRegLabeledEdit
+      Left = 216
+      Top = 37
+      Width = 106
+      Height = 21
+      EditLabel.Width = 76
+      EditLabel.Height = 13
+      EditLabel.Caption = 'ip sad similar diff'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 5
+      RegStartAddress = '0xE0000930'
+      RegBits = 13
+      TextType = ttInt
+    end
+    object RegLabeledEdit31: TRegLabeledEdit
+      Left = 216
+      Top = 58
+      Width = 106
+      Height = 21
+      EditLabel.Width = 76
+      EditLabel.Height = 13
+      EditLabel.Caption = 'pi sad similar diff'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 6
+      RegStartAddress = '0xE0000932'
+      RegBits = 13
+      TextType = ttInt
+    end
+    object RegLabeledEdit32: TRegLabeledEdit
+      Left = 216
+      Top = 80
+      Width = 106
+      Height = 21
+      EditLabel.Width = 80
+      EditLabel.Height = 13
+      EditLabel.Caption = 'ph sad similar diff'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 7
+      RegStartAddress = '0xE0000934'
+      RegBits = 13
+      TextType = ttInt
+    end
+    object RegLabeledEdit33: TRegLabeledEdit
+      Left = 447
+      Top = 16
+      Width = 106
+      Height = 21
+      EditLabel.Width = 58
+      EditLabel.Height = 13
+      EditLabel.Caption = 'ip_no_dtl_th'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 8
+      RegStartAddress = '0xE0000936'
+      RegBits = 4
+      RegStart = 4
+      TextType = ttInt
+    end
+    object RegLabeledEdit34: TRegLabeledEdit
+      Left = 447
+      Top = 37
+      Width = 106
+      Height = 21
+      EditLabel.Width = 58
+      EditLabel.Height = 13
+      EditLabel.Caption = 'pi_no_dtl_th'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 9
+      RegStartAddress = '0xE0000936'
+      RegBits = 4
+      TextType = ttInt
+    end
+    object RegLabeledEdit35: TRegLabeledEdit
+      Left = 447
+      Top = 58
+      Width = 106
+      Height = 21
+      EditLabel.Width = 62
+      EditLabel.Height = 13
+      EditLabel.Caption = 'ph_no_dtl_th'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 10
+      RegStartAddress = '0xE0000937'
+      RegBits = 4
+      RegStart = 4
+      TextType = ttInt
+    end
+    object RegLabeledEdit36: TRegLabeledEdit
+      Left = 447
+      Top = 80
+      Width = 106
+      Height = 21
+      EditLabel.Width = 59
+      EditLabel.Height = 13
+      EditLabel.Caption = 'pf_no_dtl_th'
+      LabelPosition = lpLeft
+      LabelSpacing = 3
+      TabOrder = 11
+      RegStartAddress = '0xE0000937'
+      RegBits = 4
+      TextType = ttInt
+    end
+  end
+  object Button1: TButton
+    Left = 600
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'Refresh'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object GroupBox1: TGroupBox
+    Left = 16
+    Top = 120
+    Width = 553
+    Height = 353
+    Caption = 'clear r-buffer'
+    TabOrder = 2
+    object RegCheckBox4: TRegCheckBox
+      Left = 16
+      Top = 40
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_r_en'
+      TabOrder = 0
+      RegAddress = '0xE0000A79'
+      RegBit = 7
+    end
+    object RegCheckBox5: TRegCheckBox
+      Left = 16
+      Top = 56
+      Width = 121
+      Height = 17
+      Caption = 'glb_clr_r_film_c_en'
+      TabOrder = 1
+      RegAddress = '0xE0000A79'
+      RegBit = 6
+    end
+    object RegCheckBox6: TRegCheckBox
+      Left = 16
+      Top = 72
+      Width = 137
+      Height = 17
+      Caption = 'glb_clr_r_gmv_detail_en'
+      TabOrder = 2
+      RegAddress = '0xE0000A79'
+      RegBit = 5
+    end
+    object RegCheckBox7: TRegCheckBox
+      Left = 16
+      Top = 88
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_r_detail_en'
+      TabOrder = 3
+      RegAddress = '0xE0000A79'
+      RegBit = 4
+    end
+    object RegCheckBox8: TRegCheckBox
+      Left = 16
+      Top = 104
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_r_stable_en'
+      TabOrder = 4
+      RegAddress = '0xE0000A79'
+      RegBit = 3
+    end
+    object RegCheckBox9: TRegCheckBox
+      Left = 16
+      Top = 120
+      Width = 137
+      Height = 17
+      Caption = 'glb_clr_r_apl_en'
+      TabOrder = 5
+      RegAddress = '0xE0000A79'
+      RegBit = 2
+    end
+    object RegCheckBox10: TRegCheckBox
+      Left = 16
+      Top = 136
+      Width = 121
+      Height = 17
+      Caption = 'glb_clr_r_t_sad_en'
+      TabOrder = 6
+      RegAddress = '0xE0000A79'
+      RegBit = 1
+    end
+    object RegCheckBox11: TRegCheckBox
+      Left = 16
+      Top = 152
+      Width = 121
+      Height = 17
+      Caption = 'glb_clr_r_sad_en'
+      TabOrder = 7
+      RegAddress = '0xE0000A79'
+    end
+    object RegCheckBox1: TRegCheckBox
+      Left = 152
+      Top = 40
+      Width = 137
+      Height = 17
+      Caption = 'glb_clr_temp_consis_en'
+      TabOrder = 8
+      RegAddress = '0xE0000A58'
+      RegBit = 6
+    end
+    object RegCheckBox2: TRegCheckBox
+      Left = 152
+      Top = 56
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_gmv_eq0_en'
+      TabOrder = 9
+      RegAddress = '0xE0000A58'
+      RegBit = 4
+    end
+    object RegCheckBox3: TRegCheckBox
+      Left = 152
+      Top = 72
+      Width = 97
+      Height = 17
+      Caption = 'glb_clr_dec_en'
+      TabOrder = 10
+      RegAddress = '0xE0000A40'
+      RegBit = 7
+    end
+    object RegCheckBox12: TRegCheckBox
+      Left = 152
+      Top = 88
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_h_r_detial_en'
+      TabOrder = 11
+      RegAddress = '0xE0000A40'
+      RegBit = 6
+    end
+    object RegCheckBox13: TRegCheckBox
+      Left = 152
+      Top = 104
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_v_r_detial_en'
+      TabOrder = 12
+      RegAddress = '0xE0000A40'
+      RegBit = 5
+    end
+    object RegCheckBox14: TRegCheckBox
+      Left = 152
+      Top = 120
+      Width = 129
+      Height = 17
+      Caption = 'glb_clr_hv_r_detial_en'
+      TabOrder = 13
+      RegAddress = '0xE0000A40'
+      RegBit = 4
+    end
+    object RegLabeledEdit1: TRegLabeledEdit
+      Left = 16
+      Top = 192
+      Width = 121
+      Height = 21
+      EditLabel.Width = 54
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_sad'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 14
+      RegStartAddress = '0xE0000A68'
+      RegBits = 20
+    end
+    object RegLabeledEdit2: TRegLabeledEdit
+      Left = 16
+      Top = 232
+      Width = 121
+      Height = 21
+      EditLabel.Width = 63
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_t_sad'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 15
+      RegStartAddress = '0xE0000A6B'
+      RegBits = 20
+    end
+    object RegLabeledEdit3: TRegLabeledEdit
+      Left = 16
+      Top = 272
+      Width = 121
+      Height = 21
+      EditLabel.Width = 60
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_t_apl'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 16
+      RegStartAddress = '0xE0000A6E'
+      RegBits = 8
+    end
+    object RegLabeledEdit4: TRegLabeledEdit
+      Left = 16
+      Top = 312
+      Width = 121
+      Height = 21
+      EditLabel.Width = 106
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_mv_stable_cnt'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 17
+      RegStartAddress = '0xE0000A6F'
+      RegBits = 15
+    end
+    object RegLabeledEdit5: TRegLabeledEdit
+      Left = 152
+      Top = 192
+      Width = 121
+      Height = 21
+      EditLabel.Width = 77
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_detail_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 18
+      RegStartAddress = '0xE0000A71'
+      RegBits = 24
+    end
+    object RegLabeledEdit6: TRegLabeledEdit
+      Left = 152
+      Top = 232
+      Width = 121
+      Height = 21
+      EditLabel.Width = 57
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_gmv'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 19
+      RegStartAddress = '0xE0000A74'
+      RegBits = 24
+    end
+    object RegLabeledEdit7: TRegLabeledEdit
+      Left = 152
+      Top = 272
+      Width = 121
+      Height = 21
+      EditLabel.Width = 106
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_detail_th_small'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 20
+      RegStartAddress = '0xE0000A7A'
+      RegBits = 24
+    end
+    object RegLabeledEdit8: TRegLabeledEdit
+      Left = 152
+      Top = 312
+      Width = 121
+      Height = 21
+      EditLabel.Width = 81
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_gmv_eq0'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 21
+      RegStartAddress = '0xE0000A92'
+      RegBits = 8
+    end
+    object RegLabeledEdit9: TRegLabeledEdit
+      Left = 288
+      Top = 32
+      Width = 121
+      Height = 21
+      EditLabel.Width = 85
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_consist_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 22
+      RegStartAddress = '0xE0000A93'
+      RegBits = 16
+    end
+    object RegLabeledEdit10: TRegLabeledEdit
+      Left = 288
+      Top = 72
+      Width = 121
+      Height = 21
+      EditLabel.Width = 89
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_detail_h_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 23
+      RegStartAddress = '0xE0000CC0'
+      RegBits = 24
+    end
+    object RegLabeledEdit11: TRegLabeledEdit
+      Left = 288
+      Top = 112
+      Width = 121
+      Height = 21
+      EditLabel.Width = 89
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_detail_v_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 24
+      RegStartAddress = '0xE0000CC3'
+      RegBits = 24
+    end
+    object RegLabeledEdit12: TRegLabeledEdit
+      Left = 288
+      Top = 192
+      Width = 121
+      Height = 21
+      EditLabel.Width = 116
+      EditLabel.Height = 13
+      EditLabel.Caption = 'reg_glb_clr_detail_v2_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 25
+      RegStartAddress = '0xE0000CC9'
+      RegBits = 24
+    end
+    object RegLabeledEdit13: TRegLabeledEdit
+      Left = 288
+      Top = 232
+      Width = 121
+      Height = 21
+      EditLabel.Width = 83
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_apl_gain1'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 26
+      RegStartAddress = '0xE0000A62'
+      RegBits = 8
+    end
+    object RegLabeledEdit14: TRegLabeledEdit
+      Left = 288
+      Top = 272
+      Width = 121
+      Height = 21
+      EditLabel.Width = 83
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_apl_gain2'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 27
+      RegStartAddress = '0xE0000A63'
+      RegBits = 8
+    end
+    object RegLabeledEdit15: TRegLabeledEdit
+      Left = 288
+      Top = 312
+      Width = 121
+      Height = 21
+      EditLabel.Width = 83
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_apl_gain3'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 28
+      RegStartAddress = '0xE0000A64'
+      RegBits = 8
+    end
+    object RegLabeledEdit16: TRegLabeledEdit
+      Left = 424
+      Top = 32
+      Width = 121
+      Height = 21
+      EditLabel.Width = 82
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_hold_time'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 29
+      RegStartAddress = '0xE0000A77'
+      RegBits = 8
+    end
+    object RegLabeledEdit17: TRegLabeledEdit
+      Left = 424
+      Top = 72
+      Width = 121
+      Height = 21
+      EditLabel.Width = 95
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_disable_time'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 30
+      RegStartAddress = '0xE0000A78'
+      RegBits = 8
+    end
+    object RegLabeledEdit18: TRegLabeledEdit
+      Left = 424
+      Top = 112
+      Width = 121
+      Height = 21
+      EditLabel.Width = 102
+      EditLabel.Height = 13
+      EditLabel.Caption = 'reg_glb_clr_dec_step'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 31
+      RegStartAddress = '0xE0000A40'
+      RegBits = 4
+    end
+    object RegLabeledEdit19: TRegLabeledEdit
+      Left = 288
+      Top = 152
+      Width = 121
+      Height = 21
+      EditLabel.Width = 95
+      EditLabel.Height = 13
+      EditLabel.Caption = 'glb_clr_detail_h2_th'
+      LabelPosition = lpAbove
+      LabelSpacing = 3
+      TabOrder = 32
+      RegStartAddress = '0xE0000CC6'
+      RegBits = 24
+    end
+  end
+end

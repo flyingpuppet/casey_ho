@@ -1,0 +1,623 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources
+END
+CPortCtl.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortCtl.hpp
+END
+gnugettext.pas
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/gnugettext.pas
+END
+CPortSetup.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.dcu
+END
+CPortLib3.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib3.res
+END
+CPortLib4.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib4.res
+END
+CPortLib5.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib5.res
+END
+CPortAbout.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.dcu
+END
+CPortLib10.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib10.dpk
+END
+CPortLib6.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib6.res
+END
+CPortLib7.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib7.res
+END
+DsgnCPort9.bdsproj
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort9.bdsproj
+END
+CPortLib9.res
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib9.res
+END
+CPort.inc
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPort.inc
+END
+CPortTrmSet.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.dcu
+END
+CPort.obj
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPort.obj
+END
+CPortCtl.pas
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortCtl.pas
+END
+CPort.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPort.hpp
+END
+DsgnCPortCB6.~cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.~cpp
+END
+CPortSetup.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.ddp
+END
+DsgnCPort3.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort3.res
+END
+DsgnCPort4.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort4.res
+END
+DsgnCPort5.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort5.res
+END
+CPortSetup.obj
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.obj
+END
+CPortLibCB3.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB3.bpk
+END
+CPortLib10.bdsproj
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib10.bdsproj
+END
+DsgnCPort6.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort6.res
+END
+CPortLibCB6.obj
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB6.obj
+END
+CPortLibCB4.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB4.bpk
+END
+DsgnCPort7.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort7.res
+END
+CPortLibCB5.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB5.bpk
+END
+DsgnCPortCB3.res
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB3.res
+END
+CPortLibCB6.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB6.bpk
+END
+DsgnCPort9.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort9.res
+END
+DsgnCPortCB4.res
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB4.res
+END
+DsgnCPortCB5.res
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB5.res
+END
+DsgnCPortCB6.res
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.res
+END
+CPortAbout.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.ddp
+END
+CPortAbout.obj
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.obj
+END
+CPortTrmSet.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.ddp
+END
+CPortEsc.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortEsc.dcu
+END
+CPortSetup.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.hpp
+END
+CPortReg.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortReg.dcu
+END
+CPortTrmSet.obj
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.obj
+END
+DsgnCPort10.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort10.cfg
+END
+CPortLib10.res
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib10.res
+END
+CPortAbout.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.hpp
+END
+gnugettext.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/gnugettext.dcu
+END
+CPort.pas
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPort.pas
+END
+CPortTrmSet.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.hpp
+END
+CPortImg.res
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortImg.res
+END
+DsgnCPortCB3.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB3.cpp
+END
+DsgnCPortCB4.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB4.cpp
+END
+DsgnCPortCB5.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB5.cpp
+END
+DsgnCPortCB6.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.cpp
+END
+DsgnCPort10.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort10.dpk
+END
+_desktop.ini
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/_desktop.ini
+END
+CPortSetup.pas
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.pas
+END
+CPortEsc.obj
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortEsc.obj
+END
+CPortReg.obj
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortReg.obj
+END
+CPortLibCB3.res
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB3.res
+END
+CPortLibCB4.res
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB4.res
+END
+CPortLibCB5.res
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB5.res
+END
+CPortLibCB6.res
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB6.res
+END
+CPortCtl.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortCtl.dcu
+END
+CPortAbout.pas
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.pas
+END
+DsgnCPort10.bdsproj
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort10.bdsproj
+END
+DsgnCPortCB6.~bpk
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.~bpk
+END
+gnugettext.obj
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/gnugettext.obj
+END
+CPortEsc.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortEsc.hpp
+END
+CPortTrmSet.pas
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.pas
+END
+CPortReg.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortReg.hpp
+END
+CPortSetup.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortSetup.dfm
+END
+CPortLib3.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib3.dpk
+END
+CPortLib4.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib4.dpk
+END
+CPortLib5.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib5.dpk
+END
+CPortLib6.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib6.dpk
+END
+CPortLib7.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib7.dpk
+END
+CPortLib9.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib9.dpk
+END
+gnugettext.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/gnugettext.hpp
+END
+CPortLibCB3.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB3.cpp
+END
+CPortAbout.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortAbout.dfm
+END
+CPortLibCB4.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB4.cpp
+END
+CPortLibCB5.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB5.cpp
+END
+CPortLibCB6.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLibCB6.cpp
+END
+CPortTrmSet.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortTrmSet.dfm
+END
+DsgnCPort10.res
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort10.res
+END
+CPort.dcu
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPort.dcu
+END
+CPortCtl.obj
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortCtl.obj
+END
+DsgnCPort3.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort3.dpk
+END
+CPortEsc.pas
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortEsc.pas
+END
+DsgnCPort4.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort4.dpk
+END
+DsgnCPort5.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort5.dpk
+END
+DsgnCPort6.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort6.dpk
+END
+DsgnCPortCB3.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB3.bpk
+END
+CPortReg.pas
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortReg.pas
+END
+DsgnCPort7.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort7.dpk
+END
+DsgnCPortCB4.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB4.bpk
+END
+DsgnCPortCB6.obj
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.obj
+END
+DsgnCPortCB5.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB5.bpk
+END
+CPortLib9.bdsproj
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib9.bdsproj
+END
+DsgnCPort9.dpk
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPort9.dpk
+END
+DsgnCPortCB6.bpk
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/DsgnCPortCB6.bpk
+END
+CPortLib10.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/MEMC/!svn/ver/2634/utility/Component/CPort310/sources/CPortLib10.cfg
+END

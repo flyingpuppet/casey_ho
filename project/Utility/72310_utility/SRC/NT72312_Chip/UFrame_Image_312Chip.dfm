@@ -1,0 +1,2 @@
+inherited Frame_Image_312Chip: TFrame_Image_312Chip
+end

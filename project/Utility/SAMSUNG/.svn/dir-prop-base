@@ -1,0 +1,8 @@
+K 13
+svn:externals
+V 191
+http://svn.novatek.com.tw/svn/MEMC/utility/Utility_Release_Share/SRC SRC
+http://svn.novatek.com.tw/svn/MEMC/utility/SHARE share
+http://svn.novatek.com.tw/svn/MEMC/utility/Component Component
+
+END

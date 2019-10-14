@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="Out\Utility72312_SS_Release.exe"/>
+    <OBJFILES value="OBJ\Utility72312_SS_Release.obj OBJ\U72310Device.obj 
+      OBJ\UFrame_RegView.obj OBJ\UMainFrame.obj OBJ\U72312Device.obj 
+      OBJ\UFrame_Main_312FPGA.obj OBJ\UFrame_RegView_312FPGA.obj 
+      OBJ\U72312Chip.obj OBJ\UFrame_Main_312Chip.obj 
+      OBJ\UFrame_RegView_312Chip.obj OBJ\UForm_Demo_Chip.obj 
+      OBJ\UForm_DataPath.obj OBJ\UForm_DataPath_Chip.obj OBJ\NT72682Updater.obj 
+      OBJ\spreadSpectrum.obj OBJ\UChangeSlave.obj OBJ\UForm_Local_Dimming.obj 
+      OBJ\UI2CMap.obj OBJ\ULoadScript.obj OBJ\UMEMCForm.obj OBJ\UMEMCFrame.obj 
+      OBJ\UMEMCIni.obj OBJ\I2C.obj OBJ\I2CDevice.obj OBJ\UDeviceCreate.obj 
+      OBJ\UDSUProtocol.obj OBJ\UI2CProtocol.obj OBJ\UProtocol.obj 
+      OBJ\UMainForm.obj OBJ\UUI312_Chip.obj OBJ\UDPMeter.obj OBJ\UScanRGB.obj"/>
+    <RESFILES value="Utility72312_SS_Release.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) SRC\NT72310\UFrame_RegView.dfm SRC\NT72310\UMainFrame.dfm 
+      SRC\NT72312_FPGA\UFrame_Main_312FPGA.dfm 
+      SRC\NT72312_FPGA\UFrame_RegView_312FPGA.dfm 
+      SRC\NT72312_Chip\UFrame_Main_312Chip.dfm 
+      SRC\NT72312_Chip\UFrame_RegView_312Chip.dfm 
+      SRC\NT72312_Chip\UForm_Demo_Chip.dfm SRC\NT72312_FPGA\UForm_DataPath.dfm 
+      SRC\NT72312_Chip\UForm_DataPath_Chip.dfm share\NT72682Updater.dfm 
+      share\spreadSpectrum.dfm share\UI2CMap.dfm share\UMEMCForm.dfm 
+      share\UMEMCFrame.dfm UMainForm.dfm UUI312_Chip.dfm UDPMeter.dfm UScanRGB.dfm"/>
+    <LIBFILES value="share\Driver\bcbport.lib share\Driver\usb_lib.lib share\Driver\winio.lib"/>
+    <LIBRARIES value="CPortLibCB6.lib bcbsmp.lib RegControls.lib bcb2kaxserver.lib vcldb.lib 
+      adortl.lib dbrtl.lib WinSkinC6.lib tee.lib vclx.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib vclx.lib tee.lib WinSkinC6.lib dbrtl.lib adortl.lib 
+      vcldb.lib bcb2kaxserver.lib RegControls.lib bcbsmp.lib CPortLibCB6.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi bcbsmp.bpi dbrtl.bpi vcldb.bpi adortl.bpi 
+      ibsmp.bpi bdertl.bpi vcldbx.bpi vclie.bpi inetdb.bpi inet.bpi dsnap.bpi 
+      nmfast.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;SRC\NT72310;SRC\NT72310;SRC\NT72310;SRC\NT72312_FPGA;SRC\NT72312_FPGA;SRC\NT72312_FPGA;SRC\NT72312_Chip;SRC\NT72312_Chip;SRC\NT72312_Chip;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72312_Chip;share;share;share;share;share;share;share;share;share;share\Driver;share\Driver;share\Driver;share\Driver;share\Driver;share\Driver"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="Utility72312_SS_Release.cpp"/>
+    <INCLUDEPATH value="share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;&quot;E:\Program Files\Borland\CBuilder6\Projects&quot;;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;&quot;C:\Program Files\Borland\CBuilder6\Projects\Bpl&quot;;F:\WORK;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\CPort310\sources;D:\share\SAMSUNG\Component\CPort310\sources"/>
+    <LIBPATH value="share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;&quot;E:\Program Files\Borland\CBuilder6\Projects&quot;;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;&quot;C:\Program Files\Borland\CBuilder6\Projects\Bpl&quot;;F:\WORK;$(BCB)\Projects\Lib;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CPort310\sources;D:\share\SAMSUNG\Component\CPort310\sources"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-Ishare\BPK -Ishare\Driver -Ishare -ISRC\72312_reg_map -ISRC\NT72312_Chip 
+      -ISRC\NT72312_FPGA -ISRC\NT72310 -ISRC\Driver -ISRC 
+      -I&quot;E:\Program Files\Borland\CBuilder6\Projects&quot; -I72312_reg_map 
+      -INT72312_Chip -INT72312_FPGA -INT72310 -IDriver 
+      -IF:\WORK\72310utility\SRC -IBPK 
+      -I&quot;C:\Program Files\Borland\CBuilder6\Projects\Bpl&quot; -IF:\WORK 
+      -I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; -I$(BCB)\include 
+      -I$(BCB)\include\vcl -I$(BCB)\CPort310\sources 
+      -ID:\share\SAMSUNG\Component\CPort310\sources -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=D:\PROGRA~1\borland\CBUILD~1\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 
+      -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2OBJ -N0OBJ -$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-IOBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="Utility72312_SS_Release.res" FORMNAME="" UNITNAME="Utility72312_SS_Release.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Utility72312_SS_Release.cpp" FORMNAME="" UNITNAME="Utility72312_SS_Release" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72310\U72310Device.cpp" FORMNAME="" UNITNAME="U72310Device" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72310\UFrame_RegView.cpp" FORMNAME="Frame_RegView" UNITNAME="UFrame_RegView" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72310\UMainFrame.cpp" FORMNAME="Frame_Main" UNITNAME="UMainFrame" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_FPGA\U72312Device.cpp" FORMNAME="" UNITNAME="U72312Device" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_FPGA\UFrame_Main_312FPGA.cpp" FORMNAME="Frame_Main_312FPGA" UNITNAME="UFrame_Main_312FPGA" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_FPGA\UFrame_RegView_312FPGA.cpp" FORMNAME="Frame_RegView_312FPGA" UNITNAME="UFrame_RegView_312FPGA" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_Chip\U72312Chip.cpp" FORMNAME="" UNITNAME="U72312Chip" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_Chip\UFrame_Main_312Chip.cpp" FORMNAME="Frame_Main_312Chip" UNITNAME="UFrame_Main_312Chip" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_Chip\UFrame_RegView_312Chip.cpp" FORMNAME="Frame_RegView_312Chip" UNITNAME="UFrame_RegView_312Chip" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_Chip\UForm_Demo_Chip.cpp" FORMNAME="Form_Demo_Chip" UNITNAME="UForm_Demo_Chip" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_FPGA\UForm_DataPath.cpp" FORMNAME="Form_DataPath" UNITNAME="UForm_DataPath" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SRC\NT72312_Chip\UForm_DataPath_Chip.cpp" FORMNAME="Form_DataPath_Chip" UNITNAME="UForm_DataPath_Chip" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\NT72682Updater.cpp" FORMNAME="Form_NT72682Updater" UNITNAME="NT72682Updater" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\spreadSpectrum.cpp" FORMNAME="Form_spreadSpectrum" UNITNAME="spreadSpectrum" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UChangeSlave.cpp" FORMNAME="" UNITNAME="UChangeSlave" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UForm_Local_Dimming.cpp" FORMNAME="" UNITNAME="UForm_Local_Dimming" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UI2CMap.cpp" FORMNAME="I2CMap" UNITNAME="UI2CMap" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\ULoadScript.cpp" FORMNAME="" UNITNAME="ULoadScript" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UMEMCForm.cpp" FORMNAME="MEMCForm" UNITNAME="UMEMCForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UMEMCFrame.cpp" FORMNAME="MEMCFrame" UNITNAME="UMEMCFrame" CONTAINERID="CCompiler" DESIGNCLASS="TFrame" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\UMEMCIni.cpp" FORMNAME="" UNITNAME="UMEMCIni.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\I2C.cpp" FORMNAME="" UNITNAME="I2C.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\I2CDevice.cpp" FORMNAME="" UNITNAME="I2CDevice.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\UDeviceCreate.cpp" FORMNAME="" UNITNAME="UDeviceCreate.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\UDSUProtocol.cpp" FORMNAME="" UNITNAME="UDSUProtocol.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\UI2CProtocol.cpp" FORMNAME="" UNITNAME="UI2CProtocol.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\UProtocol.cpp" FORMNAME="" UNITNAME="UProtocol.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\bcbport.lib" FORMNAME="" UNITNAME="bcbport.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\usb_lib.lib" FORMNAME="" UNITNAME="usb_lib.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="share\Driver\winio.lib" FORMNAME="" UNITNAME="winio.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UMainForm.cpp" FORMNAME="MainForm" UNITNAME="UMainForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UUI312_Chip.cpp" FORMNAME="Form_UI312_Chip" UNITNAME="UUI312_Chip" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UDPMeter.cpp" FORMNAME="Form_DPMeter" UNITNAME="UDPMeter" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UScanRGB.cpp" FORMNAME="Form_ScanRGB" UNITNAME="UScanRGB" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1028
+CodePage=950
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=16
+Item0=share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\CPort310\sources;D:\share\SAMSUNG\Component\CPort310\sources
+Item1=share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\CPort310\sources
+Item2=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\CPort310\sources
+Item3=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item4=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;C:\Program Files (x86)\Borland\CBuilder6\Include
+Item5=72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item6=NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item7=NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item8=F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item9=BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item10=C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item11=F:\WORK;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item12=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item13=D:\SA_SVN\NT72680\trunk\SRC;D:\新資料夾;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item14=D:\新資料夾;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item15=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=20
+Item0=share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CPort310\sources;D:\share\SAMSUNG\Component\CPort310\sources
+Item1=share\BPK;share\Driver;share;SRC\72312_reg_map;SRC\NT72312_Chip;SRC\NT72312_FPGA;SRC\NT72310;SRC\Driver;SRC;E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CPort310\sources
+Item2=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\CPort310\sources
+Item3=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item4=E:\Program Files\Borland\CBuilder6\Projects;72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;C:\Program Files (x86)\Borland\CBuilder6\Lib
+Item5=72312_reg_map;NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item6=NT72312_Chip;NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item7=NT72312_FPGA;NT72310;Driver;F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item8=F:\WORK\72310utility\SRC;BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item9=BPK;C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item10=C:\Program Files\Borland\CBuilder6\Projects\Bpl;F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item11=F:\WORK;$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item12=$(BCB)\Projects\Lib;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+Item13=D:\SA_SVN\NT72680\trunk\SRC;$(BCB)\Projects\Lib;D:\新資料夾;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;D:\NT72300_Beta2
+Item14=$(BCB)\Projects\Lib;D:\新資料夾;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;D:\NT72300_Beta2
+Item15=D:\新資料夾;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;D:\NT72300_Beta2
+Item16=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;D:\NT72300_Beta2
+Item17=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;D:\GoingProject\CT221_demod_SW
+Item18=$(BCB)\lib\obj;$(BCB)\lib;D:\GoingProject\CT221_demod_SW
+Item19=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=2
+Item0=OBJ
+Item1=..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=Out\
+Item1=..\Out\
+Item2=..\Out
+Item3=..\Final Output\
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">  
+  <appender name="ROLLING" class="org.apache.log4j.RollingFileAppender"> 
+    <layout class="org.apache.log4j.PatternLayout"> 
+	  <param name="ConversionPattern" value="%-7p: %-14d{MM-dd HH:mm:ss,SSS}: %c * %t : %m%n"/>
+    </layout>  
+    <param name="File" value="${HCICLOUD_HOME}/log/jASR_SDK.log"/>  
+    <param name="MaxFileSize" value="100MB"/>  
+    <param name="MaxBackupIndex" value="5"/> 
+  </appender>  
+  <appender name="DAILY" class="org.apache.log4j.DailyRollingFileAppender"> 
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <param name="ConversionPattern" value="%d %5p %c %l - %m%n"/> 
+    </layout>  
+    <param name="File" value=""/>  
+    <param name="DatePattern" value="'.'yyyy-MM-dd"/> 
+  </appender>  
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender"> 
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <param name="ConversionPattern" value="%-7p: %-14d{MM-dd HH:mm:ss,SSS}: %c * %t : %m%n"/> 
+    </layout>  
+    <param name="Threshold" value="info"/> 
+  </appender>  
+  <appender name="ASYNC" class="org.apache.log4j.AsyncAppender"> 
+    <param name="BufferSize" value="1"/>  
+    <param name="Blocking" value="true"/>  
+    <appender-ref ref="ROLLING"/> 
+    <appender-ref ref="CONSOLE"/> 
+  </appender>  
+  <logger name="jASR_SDK">
+    <level value="all"/> 
+    <appender-ref ref="ASYNC" />
+  </logger>
+</log4j:configuration>

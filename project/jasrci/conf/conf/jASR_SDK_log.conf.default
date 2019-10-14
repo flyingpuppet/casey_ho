@@ -1,0 +1,35 @@
+# property configurator asr module log file
+
+# root category config
+
+log4cpp.rootCategory=DEBUG, rootAppender
+##log4cpp.rootCategory=DEBUG
+
+log4cpp.category.jASR_SDK=DEBUG, hcicloud
+log4cpp.additivity.jASR_SDK=true
+
+# iSpeakLocal log
+log4cpp.category.iSpeakLocal=DEBUG, hcicloud
+log4cpp.additivity.iSpeakLocal=true
+
+# iSpeakProxy log
+log4cpp.category.iSpeakProxy=DEBUG, hcicloud
+log4cpp.additivity.iSpeakProxy=true
+
+# iSpeakCluster log
+log4cpp.category.iSpeakCluster=DEBUG, hcicloud
+log4cpp.additivity.iSpeakCluster=true
+
+log4cpp.appender.rootAppender=ConsoleAppender
+log4cpp.appender.rootAppender.layout=PatternLayout
+log4cpp.appender.rootAppender.layout.ConversionPattern=%-7p: %-14d{%m-%d %H:%M:%S,%l}: %c * %t : %m%n
+
+# RollingFileAppender config
+
+log4cpp.appender.hcicloud=RollingFileAppender
+log4cpp.appender.hcicloud.threshold=DEBUG
+log4cpp.appender.hcicloud.fileName=$HCICLOUD_HOME/log/jASR_SDK.log
+log4cpp.appender.hcicloud.maxFileSize=10485760
+log4cpp.appender.hcicloud.maxBackupIndex=10
+log4cpp.appender.hcicloud.layout=PatternLayout
+log4cpp.appender.hcicloud.layout.ConversionPattern=%-7p: %-14d{%m-%d %H:%M:%S,%l}: %c * %t : %m%n

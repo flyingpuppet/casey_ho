@@ -1,0 +1,2 @@
+inherited Frame_DDR_312FPGA: TFrame_DDR_312FPGA
+end

@@ -1,0 +1,9 @@
+Step1:
+copy these 3 folders to x:\Program Files\Borland\CBuilder6\
+
+Step2:
+run CBuilder6
+Component->Install Packages->Add->x:\Program Files\Borland\CBuilder6\bpl\WinSkinC6.bpl
+
+Step3:
+Install OK 

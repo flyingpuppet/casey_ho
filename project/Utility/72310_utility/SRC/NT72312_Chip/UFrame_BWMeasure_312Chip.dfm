@@ -1,0 +1,2 @@
+inherited Frame_BWMeasure_312Chip: TFrame_BWMeasure_312Chip
+end

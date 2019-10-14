@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/MEMC/!svn/ver/2943/utility/Utility_Release_Share/SRC/NT72310
+END
+U72310Device.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/U72310Device.cpp
+END
+UMainFrame.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UMainFrame.cpp
+END
+UFrame_DataPath.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UFrame_DataPath.cpp
+END
+U72310Device.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/U72310Device.h
+END
+UFrame_RegView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/MEMC/!svn/ver/2943/utility/Utility_Release_Share/SRC/NT72310/UFrame_RegView.cpp
+END
+UMainFrame.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UMainFrame.dfm
+END
+UFrame_DataPath.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UFrame_DataPath.dfm
+END
+UMainFrame.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UMainFrame.ddp
+END
+UMainFrame.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UMainFrame.h
+END
+UFrame_DataPath.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UFrame_DataPath.ddp
+END
+UFrame_RegView.dfm
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/MEMC/!svn/ver/2943/utility/Utility_Release_Share/SRC/NT72310/UFrame_RegView.dfm
+END
+UFrame_RegView.ddp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UFrame_RegView.ddp
+END
+UFrame_RegView.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/MEMC/!svn/ver/2689/utility/Utility_Release_Share/SRC/NT72310/UFrame_RegView.h
+END
