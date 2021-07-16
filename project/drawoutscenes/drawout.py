@@ -7,6 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import logging
 import os
+import math
+import uuid
 
 
 def get_log():
@@ -16,7 +18,7 @@ def get_log():
     # 创建一个logger
     logger = logging.getLogger()
     logger.handlers.clear()  # 清除logger,避免多个文件引用重复打印log
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     """定义一个函数，回调logger实例"""
     # log_path = os.path.dirname(sys.path[0])
     # print(log_path)
@@ -25,23 +27,24 @@ def get_log():
     # log_path = os.path.dirname(os.path.dirname(sys.path[0]))+"/Logs/" # 指定文件输出路径，注意logs是个文件夹，一定要加上/，不然会导致输出路径错误，把logs变成文件名的一部分了
     #  curPath = os.path.abspath(os.path.dirname(__file__))
     # log_path = 'D:\\code\\drawoutscene\\build\\test\\00142.log'
+    
 
 
     # nowTime = time.strftime('%Y-%m-%d')
     # logname = log_path + 'acars-' + nowTime + '.log'  # 指定输出的日志文件名
    
-    logname = 'D:\\code\\drawoutscene\\build\\test\\00142.log'
+    logname = 'D:\\output\\scenes.log'
 
     fp = open(logname, 'a')
     # 直接打开一个文件，如果文件不存在则创建文件
     fp.close()
 
     fh = logging.FileHandler(logname, encoding='utf-8')  # 指定utf-8格式编码，避免输出的日志文本乱码
-    fh.setLevel(logging.DEBUG)
+    fh.setLevel(logging.INFO)
 
     # 创建一个handler，用于将日志输出到控制台
     ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    ch.setLevel(logging.INFO)
 
     # 定义handler的输出格式
     formatter = logging.Formatter('%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
@@ -74,7 +77,22 @@ def knnDetect(last_img, img, sift, flann):
     # print("----------------------------------------------")
     # print(n, len(kp1),len(kp2))
     
-    if(len(kp1)>10 and len(kp2)>10):
+    # log.debug("knn debug----kp1：%d, kp2:%d", len(kp1), len(kp2))
+
+    x = len(kp1)
+    y = len(kp2)
+
+    max = x if x > y else y
+    min = x if x < y else y
+
+    if max == 0:
+        return 0
+
+    if float((min / max)) < 0.2:
+        return 100
+
+
+    if(len(kp1)>5 and len(kp2)>5):
         matches = flann.knnMatch(des1,des2,k=2)
     # matchesMask = [[0,0] for i in range(len(matches))]
     # print(matches)
@@ -87,7 +105,8 @@ def knnDetect(last_img, img, sift, flann):
                 # good.append([m])
                 knn+=1
         if(kpcount > 0):
-            log.debug(knn, len(matches), len(kp1), len(kp2), int(knn/kpcount*1000))            
+            
+            # log.debug('%d, %d, %d, %d, %d', knn, len(matches), len(kp1), len(kp2), int(knn/kpcount*1000))            
             match = int(knn/kpcount*1000)
 
         # if knn> 0:
@@ -113,46 +132,56 @@ def pixeldiff(last_img, img):
 
     # diff_m_img = cv.absdiff(diff_img, diff_2_img)      
 
-    ret, diff_img = cv.threshold(diff_img, 16, 255, cv.THRESH_BINARY)
-    cv.imshow("diff_img",diff_img)
+    ret, diff_img = cv.threshold(diff_img, 10, 255, cv.THRESH_BINARY)
+    # cv.imshow("diff_img",diff_img)
     h, w = img.shape
-    diff = int(diff_img.sum()/(h*w))
-
+    diff = diff_img.sum()/(h*w)
+    diff = int(math.sqrt(diff)*1600)
+    
     return diff
 
-if __name__ == '__main__':
+def drawoutScenes(filename, outputpath = "D:\\output_1\\"):
 
-    rtsp_str = 'D:\\code\\drawoutscene\\build\\test\\00142.m2ts'
-    log = get_log()
+    # sift = cv.xfeatures2d.SIFT_create()
 
-    sift = cv.xfeatures2d.SIFT_create()
+    
 
     # FLANN 参数设计
-    FLANN_INDEX_KDTREE = 0
-    index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 8)
-    search_params = dict(checks=50)
-    flann = cv.FlannBasedMatcher(index_params,search_params)
+    # FLANN_INDEX_KDTREE = 0
+    # index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 8)
+    # search_params = dict(checks=50)
+    # flann = cv.FlannBasedMatcher(index_params,search_params)
 
-    cap = cv.VideoCapture(rtsp_str)
+    cap = cv.VideoCapture(filename)
+
+    if not cap.isOpened():
+        log.info(filename + " is not a media file!")
+        return 0
     
     fps = cap.get(cv.CAP_PROP_FPS)
     totalframe = int(cap.get(cv.CAP_PROP_FRAME_COUNT))
     h = cap.get(cv.CAP_PROP_FRAME_HEIGHT)
     w = cap.get(cv.CAP_PROP_FRAME_WIDTH)
+
+    if(fps < 0 or totalframe < 0 or h < 0 or w < 0):
+        return 0
     
     th = int(h/4);
     tw = int(w/4);
-    pixelCount = th*tw
+
+    if(th < 224) or (tw < 224):
+        th = 270
+        tw = 480
+
+
+    # pixelCount = th*tw
     print(fps, totalframe , h, w)
 
 
-    img = last_2_gray_img = last_gray_img = gray_img = diff_img = erodeImg = dilateImge = diff_2_img =  diff_m_img =None
-    scenechanged = 0;
-    n = 0
-    ss = 0
-    ss_2 = 0
-    diff = 0
-    kernel = cv.getStructuringElement(cv.MORPH_RECT,(3, 3))
+    img = last_gray_img = gray_img = None
+
+
+    # kernel = cv.getStructuringElement(cv.MORPH_RECT,(3, 3))
 
     count = totalframe
     count = totalframe if totalframe<count else count 
@@ -161,14 +190,18 @@ if __name__ == '__main__':
     y2 = np.zeros(count+1)
     ym = np.zeros(count+1)
     yn = np.zeros(count+1)
-
-
-    last_hist = hist = diff_hist = None
     
-    lastmean = last_stddev = last_vaira = diff_stddev = 0
-    last_ori_gray_img =  ori_gray_img = None
+    last_stddev  = diff_stddev = 0
 
+    scenechanged = 0;
+    n = 0
     imagecount = 0
+    start = end = 0
+    start = time.time()
+
+    imageindex = 0
+    imagecontinues = 0
+    imagestart = 0
     while(n < totalframe):
         # read original image
         ret, img = cap.read()        
@@ -179,74 +212,92 @@ if __name__ == '__main__':
         # resize to the quarter of the original image
         resize_img = cv.resize(img, (tw, th))        
 
-        cv.imshow("video", resize_img)
+        # cv.imshow("video", resize_img)
 
         # gray image 
-        ori_gray_img = cv.cvtColor(resize_img, cv.COLOR_BGRA2GRAY)
-        gray_img = ori_gray_img
+        gray_img = cv.cvtColor(resize_img, cv.COLOR_BGRA2GRAY)
+        # gray_img = ori_gray_img
+
+        # caculate mean & sd
+        (mean, stddev) = cv.meanStdDev(gray_img)
 
 
-        cv.imshow("eqH", gray_img)
+
+        # cv.imshow("eqH", gray_img)
 
         
         if(last_gray_img is None):
-            pass
-        # elif(last_2_gray_img is None):
-        #     # scenechanged = 1
-        #     pass
-        elif(last_ori_gray_img is None):
-            pass
+            scenechanged = 1
         else:
 
-            diff = pixeldiff(last_gray_img, gray_img)
-            y[n] = diff  
+            diff_stddev = int(abs(stddev - last_stddev))
+            y2[n] = diff_stddev
             
 
             if n >= count:
                 break
 
-            if(diff > 0 ):            
-                #sift
-                log.debug("frame-----------------------------------------------",n)
-                ratio = knnDetect(last_gray_img, gray_img, sift, flann)
-                yn[n] = ratio
-                
-                if (ratio < 300):
-                    log.debug("-------------------------------------------------------------------------------------------")
-                    log.debug(imagecount,"frame", n, diff, ratio)
+            if(diff_stddev > 0 ):
+                log.debug("frame-----------------------------------------------  "+str(n))
+                if(imagecontinues == 0):
+                    imagecontinues = 1
                     imagecount += 1
-                    # scenechanged = 1
+                    imagestart = n
+                    imageindex = n  
+                    scenechanged = 1                  
+                else:
+ 
+                    if(n-imageindex == 1):
+                        imageindex = n
+                    else:
+                        imagecontinues = 0
+
+                # print("imagestart :", imagestart, "iamgeindex :", imageindex, "imagecontinues: ",imagecontinues)
+               
+                # ratio = knnDetect(last_gray_img, gray_img, sift, flann)
+                # ratio = 0
+                # yn[n] = ratio*25
+                
+                # if (ratio > 0 and ratio < 200):
+                #     log.debug("-------------------------------------------------------------------------------------------")
+                #     log.debug("%d, %s-%d, %d, %d",imagecount,"frame", n, diff, ratio)
+                #     imagecount += 1
+                #     scenechanged = 1
 
         last_gray_img = gray_img
-        last_ori_gray_img = ori_gray_img
+        last_stddev = stddev
+        
         
         if(scenechanged == 1):
-        #     # print("diff", n, diff_stddev)         
-            cv.imwrite("D:\\code\\drawoutscene\\build\\test\\"+"00142_"+str(n-1)+"_"+str(diff_stddev)+".png", img, [cv.IMWRITE_PNG_COMPRESSION, 9])
+        #     # print("diff", n, diff_stddev)    
+            uuname = uuid.uuid1().hex
+            outputfilename = outputpath+uuname+".png"     
+            cv.imwrite(outputfilename, resize_img, [cv.IMWRITE_PNG_COMPRESSION, 9])
             scenechanged = 0  
 
         # time.sleep(1/fps)
         
         n += 1
 
-        if cv.waitKey(1) & 0xFF == ord('q'):
-            break
+    end = time.time()
+    return imagecount
 
+    # log.info("total time : %d, imagecount: %d",(end-start, imagecount)
 
     # cv.normalize(y, y, 0, 100,cv.NORM_MINMAX)
     # cv.normalize(y2, y2, 0, 100,cv.NORM_MINMAX)
     # cv.normalize(ym, ym, 0, 100,cv.NORM_MINMAX)
     # cv.normalize(yn, yn, 0, 100,cv.NORM_MINMAX)
 
-    fig = plt.figure()
-    ax1 = fig.add_subplot(111)
-    ax1.set_title("pixel diff")
-    plt.xlabel('frame')
-    plt.ylabel('diffsum')
-    ax1.scatter(x,y,s=1,c='r')
+    # fig = plt.figure()
+    # ax1 = fig.add_subplot(111)
+    # ax1.set_title("pixel diff")
+    # plt.xlabel('frame')
+    # plt.ylabel('diffsum')
+    # ax1.scatter(x,y,s=1,c='r')
     # ax1.scatter(x,y2,s=1,c='g')
-    # ax1.scatter(x,ym,s=1,c='b')
-    ax1.scatter(x,yn,s=1,c='m')
+    # ax1.scatter(x,ym,s=1,c='m')
+    # ax1.scatter(x,yn,s=1,c='b')
 
     # ax2 = fig.add_subplot(132)
     # ax2.set_title("SD diff")
@@ -260,7 +311,80 @@ if __name__ == '__main__':
     # plt.ylabel('diffsum')
     # ax3.scatter(x,ym,s=1,c='b')
 
-    plt.savefig(rtsp_str+".jpg")
+    # plt.savefig(rtsp_str+".jpg")
+    
+
+def readfdictfromfile(filename):
+    fdict = {}
+    f = open(filename, 'r', encoding='utf-8')
+    foperations = f.readlines()
+
+    
+    for foper in foperations:
+    # for fileopstr in fileoperations:
+        fop = foper.split('\t')
+        fname = fop[0]
+        op = fop[3]
+
+        fname = fname.strip()
+        op = op.strip()
+        fdict[fname] = op
+    
+    f.close()
+
+    return fdict
+
+
+def writefdictofile(dict, file):
+    f = open(file, 'w', encoding='utf-8')
+    for key, value in dict.items():
+        f.write(key +"\t\t\t"+ value+'\n')
+    f.close()
+
+if __name__ == '__main__':
+
+    # rtsp_str = 'D:\\code\\drawoutscene\\build\\test\\00142.m2ts'
+    # rtsp_str = 'D:\\迅雷下载\\[电影天堂www.dytt89.com]冒牌大保镖-2021_HD国语中字.mp4'
+    start = time.time()
+    log = get_log()
+    rootpath = "D:\\food\\"
+
+    dictfilename = "D:\\output_1\\files-1.txt"
+
+    # filedict = readfdictfromfile(dictfilename)
+
+    # rootpath = "D:\\BaiduNetdiskDownload\\视频任务组_20170922_2313\\"
+
+    dirfiles = os.walk(rootpath)
+    
+    
+    for dirfile in dirfiles:
+        (path, dirs, files) = dirfile
+        for file in files:
+            imagecount = 0
+            filepathname = os.path.join(path, file)
+            # if filedict[filepathname] == '1':
+            #     log.info(filepathname+ " is analysed!")
+            #     continue
+            # print(filepathname)
+            filestart = time.time()
+            log.info(filepathname+"-------- analysed start")  
+            try:           
+                imagecount = drawoutScenes(filepathname)
+                pass
+            except Exception as e:
+                log.error(e)
+                # writefdictofile(filedict, dictfilename)    
+            # filedict[filepathname] = '1'    
+            log.info(filepathname+"-------- analysed end")
+            fileend = time.time()
+            log.info(filepathname+" total time: %f, imagecount: %d", fileend-filestart, imagecount)
+    end = time.time()
+    log.info("all files total time: "+str(end-start))
+    
+    
+
+    
 
 
     # cv.waitKey(20)
